@@ -27,7 +27,10 @@
         </div>
     </nav>
     <!-- ROUTER VIEW QUE CARGARÁ LAS VISTAS (INICIO, SOBRE MÍ, CONTACTO, ETC.) -->
-    <router-view></router-view>
+    <transition name="v8vue">
+      <router-view></router-view>
+    </transition>  
+    
   </div>
   
 </template>
@@ -50,5 +53,13 @@ export default {
 }
 #menu-v8 a{
   text-shadow: 1px 1px #000;
+}
+.v8vue-enter-active,
+.v8vue-leave-active {
+ transition: opacity 1.0s;
+}
+.v8vue-enter,
+.v8vue-leave-to {
+ opacity: 0;
 }
 </style>

@@ -1,9 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import AboutMe from '../views/AboutMe.vue'
-import Contact from '../views/Contact.vue'
-import RecentPosts from '../views/RecentPosts.vue'
 import NotFound from '../views/NotFound.vue'
 import Administrador from '../views/Administrador.vue'
 
@@ -13,7 +9,9 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue')
+  
+
   },
   {
     path: '/about',
@@ -26,30 +24,33 @@ const routes = [
   {
     path: '/sobremi',
     name: 'SobreMi',
-    component: AboutMe,
+    component: () => import(/* webpackChunkName: "aboutme" */ '../views/AboutMe.vue'),
     alias:['/acerca']
-
   },
 
   {
     path: '/contacto',
     name: 'Contacto',
-    component: Contact
+    component: () => import(/* webpackChunkName: "contact" */ '../views/Contact.vue'),
   },
-    {
-      path: '/contactame',
-      redirect: {name: 'Contacto'}
-    },
+
+  {
+    path: '/contactame',
+    redirect: {name: 'Contacto'}
+  },
+
   {
     path: '/post/:number',
     name: 'RecentPosts',
-    component: RecentPosts
+    component: () => import(/* webpackChunkName: "recentposts" */ '../views/RecentPosts.vue'),
   },
+
   {
     path: '*',
     name: 'NotFound',
     component: NotFound
   },
+
   {
     path: '/administrador/:admin',
     name: 'Administrador',
